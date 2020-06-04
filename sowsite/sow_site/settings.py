@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import dj_database_url
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -74,15 +75,19 @@ WSGI_APPLICATION = 'sow_site.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'sow_db',
+#         'USER' : 'postgres',
+#         'PASSWORD': 'Unicornio27',
+#         'HOST': 'localhost',
+#         'PORT': '5300',
+#     }
+# }
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'sow_db',
-        'USER' : 'postgres',
-        'PASSWORD': 'Unicornio27',
-        'HOST': 'localhost',
-        'PORT': '5300',
-    }
+    'default': dj_database_url.config() 
 }
 
 
@@ -128,7 +133,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 #email teste
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+#EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # email produção
 # EMAIL_HOST = 'localhost'
@@ -137,3 +142,5 @@ EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 # EMAIL_USE_TLS = True
 # EMAIL_HOST_PASSWORD = 'qwer1234'
 # DEFAUT_FROM_EMAIL = 'contato@sow.com.br'
+
+LOGOUT_REDIRECT_URL = 'index'
